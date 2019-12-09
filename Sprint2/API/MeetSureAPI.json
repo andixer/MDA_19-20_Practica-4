@@ -1,0 +1,216 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "This is a simple API",
+    "version" : "1.0.0",
+    "title" : "Simple Inventory API",
+    "contact" : {
+      "email" : "you@your-company.com"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host" : "virtserver.swaggerhub.com",
+  "basePath" : "/MeetSure/meetsure/1.0.0",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/registrar" : {
+      "post" : {
+        "summary" : "registra un nuevo usuario en el sistema",
+        "description" : "Registra un nuevo usuario al pasarme un nick público, email y password válidos.\n",
+        "operationId" : "registrarUsuario",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "datosUsuario",
+          "description" : "nick, email y password que tendrá el usuario.",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/datosUsuario"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "usuario registrado."
+          },
+          "400" : {
+            "description" : "bad nick."
+          },
+          "401" : {
+            "description" : "bad email or already registered."
+          },
+          "402" : {
+            "description" : "bad password."
+          }
+        }
+      }
+    },
+    "/identificarse" : {
+      "post" : {
+        "summary" : "identificarse en el sistema.",
+        "description" : "Identifica al usuario en el sistema.\n",
+        "operationId" : "identificarUsuario",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "datosUsuario",
+          "description" : "nombre, password",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/datosUsuario_1"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "identificado"
+          },
+          "401" : {
+            "description" : "nombre no encontrado en la plataforma."
+          },
+          "402" : {
+            "description" : "la password suminsitrada no coincide con la registrada para el nombre."
+          }
+        }
+      }
+    },
+    "/actividad" : {
+      "get" : {
+        "summary" : "Obtiene la información de una actividad",
+        "description" : "Obtiene toda la inforamción de una actividad determinada.|\n",
+        "operationId" : "getActividad",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id_actividad",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer"
+        } ],
+        "responses" : {
+          "200" : { }
+        }
+      },
+      "post" : {
+        "summary" : "añade una actividad al sistema",
+        "description" : "Registra una nueva actividad donde se añade titulo, descripcion, fecha, lugar y número de personas.\n",
+        "operationId" : "postActividad",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "datosActividad",
+          "description" : "nombre, descripción, fecha, hora, lugar y categoría relacionada con la actividad",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/datosActividad"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "actividad registrada."
+          },
+          "400" : {
+            "description" : "bad fecha"
+          },
+          "401" : {
+            "description" : "bad hora."
+          },
+          "402" : {
+            "description" : "bad id_categoria"
+          }
+        }
+      }
+    },
+    "/actividad/apuntarse/{id_actividad}" : {
+      "put" : {
+        "summary" : "apunta al usuario a la actividad",
+        "operationId" : "apuntarseActividad",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id_actividad",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "apuntado correctamente."
+          },
+          "400" : {
+            "description" : "no pudo apuntarse."
+          }
+        }
+      }
+    },
+    "/listaActividades" : {
+      "get" : {
+        "summary" : "obtiene la lista de actividades del sistema",
+        "description" : "Devuelve la lista completa de actividades publicadas en el sistema.\n",
+        "operationId" : "getListaActividades",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "apuntado correctamente"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "datosUsuario_1" : {
+      "type" : "object",
+      "required" : [ "email", "password" ],
+      "properties" : {
+        "email" : {
+          "type" : "string"
+        },
+        "password" : {
+          "type" : "string"
+        }
+      }
+    },
+    "datosActividad" : {
+      "type" : "object",
+      "required" : [ "descripcion", "fecha", "hora", "lugar", "nombre" ],
+      "properties" : {
+        "nombre" : {
+          "type" : "string"
+        },
+        "descripcion" : {
+          "type" : "string"
+        },
+        "fecha" : {
+          "type" : "string"
+        },
+        "hora" : {
+          "type" : "string"
+        },
+        "lugar" : {
+          "type" : "string"
+        },
+        "minimo_participantes" : {
+          "type" : "integer"
+        },
+        "maximo_participantes" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "datosUsuario" : {
+      "type" : "object",
+      "required" : [ "email", "nick", "password" ],
+      "properties" : {
+        "nick" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "password" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

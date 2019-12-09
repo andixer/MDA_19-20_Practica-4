@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Vista.VistaUsuario">
+
+    <TextView
+        android:text = "Nombre: "
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:id = "@+id/textviewUsuarioNombre"
+        android:textColorHighlight = "#ff7eff15"
+        android:textColorHint = "#ffff25e6"
+        android:layout_marginTop = "200dp"
+        android:layout_alignParentTop = "true"
+        android:layout_centerHorizontal = "true"
+        android:textSize = "35dp"
+        />
+
+    <TextView
+        android:text = "Ciudad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textviewUsuarioCiudad"
+        android:layout_below="@+id/textviewUsuarioNombre"
+        android:layout_centerHorizontal = "true"
+        android:textSize = "35dp"
+        />
+
+    <TextView
+        android:text = "Correo: "
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:id = "@+id/textviewUsuarioCorreo"
+        android:textColorHighlight = "#ff7eff15"
+        android:textColorHint = "#ffff25e6"
+        android:layout_below="@+id/textviewUsuarioCiudad"
+        android:layout_centerHorizontal = "true"
+        android:textSize = "35dp"/>
+
+
+    <TextView
+        android:text = "Detalles"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:id = "@+id/textviewUsuarioDetalles"
+        android:textColorHighlight = "#ff7eff15"
+        android:textColorHint = "#ffff25e6"
+        android:layout_below="@+id/textviewUsuarioCorreo"
+        android:layout_centerHorizontal = "true"
+        android:textSize = "35dp"/>
+
+    <include layout="@layout/content_vista_usuario" />
+
+</RelativeLayout>
